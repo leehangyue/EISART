@@ -1,0 +1,37 @@
+ZView Circuit Model:          2.0
+  IOPT:                       0
+  DINP:                       1
+  DFIT:                       1
+  PINP:                       4
+  PFIT:                       4
+  FREEQ:                      1
+  NEG:                        1
+  FUN:                        99
+  DATATYPE:                   0
+  IPAR:                       0
+  IFP:                        0
+  IRE:                        0
+  CELCAP:                     0
+  ROE:                        0
+  ATEMP:                      293
+  M:                          0
+  N:                          34
+  MAXFEV:                     100
+  NPRINT:                     9
+  IRCH:                       -3
+  MODE:                       0
+  ICP:                        0
+  IPRINT:                     1
+  IGACC:                      2
+  WEIGHTU:                    0
+  WEIGHTX:                    1
+  MAX FREQ:                   0.001
+  MIN FREQ:                   1000000
+  FIT MODE:                   0
+  RANGE MODE:                 0
+  FIT BEEP:                   0
+  Batch Previous:             0
+  Batch Spectra:              0
+  Batch Print:                0
+  Batch Output
+End ZView:                    2.0

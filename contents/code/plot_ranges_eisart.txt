@@ -1,0 +1,13 @@
+{'z_re_min': 0.0,
+'z_re_max': 3.0,
+'z_im_min': -1.0,
+'z_im_max': 0.2,
+'eis_f_min': 0.01,
+'eis_f_max': 1000000.0,
+'drt_g_min': 0.0,
+'drt_g_max': 1.0,
+'drt_t_min': 1e-08,
+'drt_t_max': 100.0,
+'res_min': -5.0,
+'res_max': 5.0,
+'enable_ranges': False}

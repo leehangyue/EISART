@@ -1,0 +1,125 @@
+ZView Circuit Model:          2.0
+  IOPT:                       0
+  DINP:                       1
+  DFIT:                       1
+  PINP:                       4
+  PFIT:                       4
+  FREEQ:                      1
+  NEG:                        1
+  FUN:                        99
+  DATATYPE:                   0
+  IPAR:                       0
+  IFP:                        0
+  IRE:                        0
+  CELCAP:                     0
+  ROE:                        0
+  ATEMP:                      293
+  M:                          0
+  N:                          34
+  MAXFEV:                     100
+  NPRINT:                     9
+  IRCH:                       -3
+  MODE:                       0
+  ICP:                        0
+  IPRINT:                     1
+  IGACC:                      2
+  WEIGHTU:                    0
+  WEIGHTX:                    1
+  MAX FREQ:                   0.001
+  MIN FREQ:                   1000000
+  FIT MODE:                   0
+  RANGE MODE:                 0
+  FIT BEEP:                   0
+  Batch Previous:             0
+  Batch Spectra:              0
+  Batch Print:                0
+  Batch Output
+End ZView:                    2.0
+Begin Circuit Model:          19
+  Element #0 Type:            1
+  Element #0 Name:            Rs
+  Element #0,0 Name:          R
+  Element #0,0 Value:         0.1
+  Element #0,0 Free:          0
+  Element #1 Type:            3
+  Element #1 Name:            L1
+  Element #1,1 Name:          T
+  Element #1,1 Value:         2.0E-7
+  Element #1,1 Free:          0
+  Element #2 Type:            -1
+  Element #2 Name:            Begin_Parallel
+  Element #3 Type:            1
+  Element #3 Name:            R1
+  Element #3,0 Name:          R
+  Element #3,0 Value:         0.06
+  Element #3,0 Free:          0
+  Element #4 Type:            11
+  Element #4 Name:            CPE1
+  Element #4,1 Name:          T
+  Element #4,1 Value:         7.5E-5
+  Element #4,1 Free:          0
+  Element #4,2 Name:          P
+  Element #4,2 Value:         1.0
+  Element #4,2 Free:          0
+  Element #5 Type:            -2
+  Element #5 Name:            End_Parallel
+  Element #6 Type:            -1
+  Element #6 Name:            Begin_Parallel
+  Element #7 Type:            1
+  Element #7 Name:            R2
+  Element #7,0 Name:          R
+  Element #7,0 Value:         0.3
+  Element #7,0 Free:          0
+  Element #8 Type:            11
+  Element #8 Name:            CPE2
+  Element #8,1 Name:          T
+  Element #8,1 Value:         0.0004
+  Element #8,1 Free:          0
+  Element #8,2 Name:          P
+  Element #8,2 Value:         1.0
+  Element #8,2 Free:          0
+  Element #9 Type:            -2
+  Element #9 Name:            End_Parallel
+  Element #10 Type:           12
+  Element #10 Name:           GE3
+  Element #10,1 Name:         T
+  Element #10,1 Value:        0.7
+  Element #10,1 Free:         0
+  Element #10,2 Name:         P
+  Element #10,2 Value:        1.0E3
+  Element #10,2 Free:         0
+  Element #11 Type:           -1
+  Element #11 Name:           Begin_Parallel
+  Element #12 Type:           1
+  Element #12 Name:           R4
+  Element #12,0 Name:         R
+  Element #12,0 Value:        0.08
+  Element #12,0 Free:         0
+  Element #13 Type:           11
+  Element #13 Name:           CPE4
+  Element #13,1 Name:         T
+  Element #13,1 Value:        0.07
+  Element #13,1 Free:         0
+  Element #13,2 Name:         P
+  Element #13,2 Value:        1.0
+  Element #13,2 Free:         0
+  Element #14 Type:           -2
+  Element #14 Name:           End_Parallel
+  Element #15 Type:           -1
+  Element #15 Name:           Begin_Parallel
+  Element #16 Type:           1
+  Element #16 Name:           R5
+  Element #16,0 Name:         R
+  Element #16,0 Value:        0.3
+  Element #16,0 Free:         0
+  Element #17 Type:           11
+  Element #17 Name:           CPE5
+  Element #17,1 Name:         T
+  Element #17,1 Value:        0.3
+  Element #17,1 Free:         0
+  Element #17,2 Name:         P
+  Element #17,2 Value:        1.0
+  Element #17,2 Free:         0
+  Element #18 Type:           -2
+  Element #18 Name:           End_Parallel
+End Circuit Model:            19
