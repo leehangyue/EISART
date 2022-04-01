@@ -793,6 +793,8 @@ def run_kernel(save_results=True, batch=False):
             exit_code = EISART_kernel.kernel_main(area=area, head=name, save_results=save_results,
                                                   R_inf_set=R_inf_set, L_set=L_set)
             progress_bar_var.set(int(100 * (i_name + 1) / n_name))
+            if exit_code == 0:
+                sucess_count += 1
             if exit_code == 0 and show_plot_backup:
                 sucess_count += 1
                 fig_gui.patch.set_facecolor('#ffffff')

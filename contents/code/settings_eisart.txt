@@ -8,7 +8,7 @@
 'show_plot': True,
 'silent': False,
 'drt_show_tau': False,
-'drt_show_LR': False,
+'drt_show_LR': True,
 'eis_draw_lines': True,
 'drt_not_ecm': False,
 'kk_test': False,

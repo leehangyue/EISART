@@ -745,6 +745,8 @@ class ECM:
                 dev = np.sum(dev * weights)
                 return dev
 
+            if not hasattr(self.rq_pars['R'], '__len__'):
+                self.rq_pars['R'] = [self.rq_pars['R']]
             rs = self.rq_pars['R'][:-1] / total_R
             rq_par_vec = np.hstack([rs, self.rq_pars['tau'][unfixed_indices], self.rq_pars['alpha'][unfixed_indices]])
             res = minimize(_loss, rq_par_vec, method='TNC', bounds=merge_bounds(indexed_bounds(R_bounds,

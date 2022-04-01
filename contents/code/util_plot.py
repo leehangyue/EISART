@@ -835,7 +835,7 @@ def plot_manual_peaks(tau=None, gamma=None, m_ecm_pars=None, show_tau=True, form
         return pos_x, pos_y
 
     def draw_m_ecm_bounds(ax, m_ecm_pars):
-        ax.patches = []
+        [p.remove() for p in reversed(ax.patches)]
         if m_ecm_pars is None:
             return
         from matplotlib.patches import Rectangle

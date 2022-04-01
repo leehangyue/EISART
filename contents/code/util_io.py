@@ -55,6 +55,10 @@ def load_eis_data(filename, read_comments=False, title_delim='\t'):
             #     but some of the values cannot be converted to floats (i.e. the title line)
             if len(row) >= 3:
                 res_eis_data.append(row)
+        row_len_aver = np.average([len(row) for row in res_eis_data])
+        for i, row in enumerate(res_eis_data):
+            if abs(len(row) - row_len_aver) > 0.1:
+                del res_eis_data[i]
         row_len_var = np.var([len(row) for row in res_eis_data])
         if row_len_var > 1e-12:  # if the length of the rows varies
             res_eis_data = [row[:3] for row in res_eis_data]  # discard the 4th and 5th column
@@ -69,7 +73,7 @@ def load_eis_data(filename, read_comments=False, title_delim='\t'):
         elif len(res_eis_data[0]) == 4 or len(res_eis_data[0]) == 6:
             # might be file converted from ism with Zahner software
             first_column = res_eis_data.T[0]
-            if np.abs(np.average(first_column[1:] - first_column[:-1] - 1)) < 1e-12:
+            if np.abs(np.average(first_column[1:] - first_column[:-1] - 1)) < 1e-6:
                 # then the first column is a list of data point number like 1, 2, 3, 4, 5, ...
                 res_eis_data = res_eis_data[:, 1:4]  # discard the number column
         return res_eis_data
@@ -193,6 +197,7 @@ def load_eis_data(filename, read_comments=False, title_delim='\t'):
         comments = comments.replace('\\X00\\X09', '\n')
         comments = comments.replace('\\X00\\X0A', '\n')  # '\x0a' == '\n'
         comments = comments.replace('\\X00\\N', '\n')
+        comments = comments.replace('\\X00\\R', '\n')
         comments = comments.replace('\\X00\\X0B', '\n')
         comments = comments.replace('\\X00\\T', '\n')
         comments = comments.replace('\\X00\\X0C', '\n')

@@ -621,7 +621,7 @@ class DRTAnalyzer:
         return abs(mu)
 
     @staticmethod
-    def valid_indices(f, zre, zim, radius=2, max_trim=15, trim_level=0.5, trim_unskip=0):
+    def valid_indices(f, zre, zim, radius=2, max_trim=15, trim_level=0.5, trim_unskip=0, is_lnf=False):
 
         # def linreg(x, y):
         #     # y^ = a + b * x
@@ -658,7 +658,10 @@ class DRTAnalyzer:
             zim = np.array(zim)
             if not len(f) == len(zre) == len(zim):
                 raise ValueError("Dimensions of f, zre and zim does not match.")
-            lnf = np.log(f)
+            if not is_lnf:
+                lnf = np.log(f)
+            else:
+                lnf = np.array(f)
             n = len(f)
             are = np.zeros(n)
             bre = np.zeros(n)
@@ -1194,7 +1197,7 @@ def main_compare():
     import util_io
     import util_plot
 
-    eis_filename = 'example_eis.txt'
+    eis_filename = input('Please specify the impedance spectrum file:\n').strip('&').strip(' ').strip('\'').strip('\"')
     eis_data = util_io.load_eis_data(eis_filename).T
     eis_data[1:, :] *= 1
 
@@ -1228,7 +1231,8 @@ def main_compare():
     # ecm.rq_pars['R'] = np.ones(5) * 0.1
     # ecm.rq_pars['tau'] = 1 / (2 * np.pi * 10 ** np.arange(5))
     # ecm.rq_pars['alpha'] = np.ones(5) * 0.9
-    ecm.load('example_ECM_pars.txt')
+    ecm_filename = input('Please specify the equivalent circuit file:\n').strip('&').strip(' ').strip('\'').strip('\"')
+    ecm.load(ecm_filename)
     gamma3, tau3 = ecm.drt_gen(tau2, drt_analyzer.tau_drt, drt_analyzer.mu, phi)
 
     eis_format_ids = ((1, 0, 0), (2, 8, 1), (2, 10, 0))
