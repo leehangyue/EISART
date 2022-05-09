@@ -1,8 +1,8 @@
 # EISART
  Electrochemical Impedance Spectra Analysis and Refining Tool
 # Citation
- The associated academic journal article is under review: 
- Hangyue Li, Zewei Lyu, Minfang Han*. Robust and Fast Estimation of Equivalent Circuit Model from Noisy Electrochemical Impedance Spectra. Electrochimica Acta. Revision submitted on April 1st, 2022.
+ The associated academic journal article: 
+ Li, Hangyue, Zewei Lyu, and Minfang Han. "Robust and Fast Estimation of Equivalent Circuit Model from Noisy Electrochemical Impedance Spectra." Electrochimica Acta (2022): 140474. https://doi.org/10.1016/j.electacta.2022.140474
 
 # About
  EISART is a fast impedance spectrum analysis tool originally developed for solid oxide fuel cells.
