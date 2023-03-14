@@ -104,7 +104,7 @@ class Toplevel1:
         top.minsize(1000, 600)
         top.maxsize(12000, 8000)
         top.resizable(1, 1)
-        top.title("EISART v2.5 by Hangyue Li")
+        top.title("EISART v2.6 by Hangyue Li")
         top.configure(background="#d9d9d9")
         top.configure(highlightbackground="#d9d9d9")
         top.configure(highlightcolor="black")

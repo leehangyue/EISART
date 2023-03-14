@@ -161,6 +161,18 @@ def _plot_eis(axs, freq, z_real, z_imag, title='', labels=None, format_ids=None,
         linewidth = 1
     else:
         linewidth = 2
+    if len(title) == 0:
+        title1 = ''
+        title2 = ''
+    elif hasattr(title[0], '__len__') and len(title) >= 2:
+        title1 = title[0]
+        title2 = title[1]
+    elif hasattr(title[0], '__len__'):
+        title1 = title[0]
+        title2 = ''
+    else:
+        title1 = title
+        title2 = ''
 
     def _plot_eis_line(f, z_r, z_i, label='', format_id=(), index=0):
         hl_ind = None
@@ -175,13 +187,13 @@ def _plot_eis(axs, freq, z_real, z_imag, title='', labels=None, format_ids=None,
         if len(format_id) == 0:
             format_id = (2, 0, 0)
         if format_id[0] >= 2:  # is line, not points
-            _subplot(axs[0], z_r, -z_i, title=title, color=color, marker=marker,
+            _subplot(axs[0], z_r, -z_i, title=title1, color=color, marker=marker,
                      markerfacecolor=markerfacecolor, linewidth=linewidth,
                      linestyle=linestyle, label=label, highlight=hl_ind,
                      xlabel=r'$Z_{\mathrm{real}} \/ / \/ \mathrm{\Omega \bullet cm^2}$',
                      ylabel=r'$-Z_{\mathrm{imag}} \/ / \/ \mathrm{\Omega \bullet cm^2}$')
         else:
-            _subplot_with_weights(axs[0], z_r, -z_i, title=title, color=color, marker=marker,
+            _subplot_with_weights(axs[0], z_r, -z_i, title=title1, color=color, marker=marker,
                                   markerfacecolor=markerfacecolor, weights=weights, linewidth=linewidth,
                                   linestyle=linestyle, label=label, highlight=hl_ind,
                                   xlabel=r'$Z_{\mathrm{real}} \/ / \/ \mathrm{\Omega \bullet cm^2}$',
@@ -192,16 +204,16 @@ def _plot_eis(axs, freq, z_real, z_imag, title='', labels=None, format_ids=None,
         if len(format_id) == 0:
             format_id = (2, 0, 0)
         if format_id[0] >= 2:  # is line, not points
-            _subplot(axs[1], f, -z_i, title='', color=color, marker=marker,
+            _subplot(axs[1], f, -z_i, title=title2, color=color, marker=marker,
                      markerfacecolor=markerfacecolor,
                      linestyle=linestyle, label=label, linewidth=linewidth,
                      xlabel='Frequency / Hz',
                      ylabel=r'$-Z_{\mathrm{imag}} \/ / \/ \mathrm{\Omega \bullet cm^2}$')
         else:
-            _subplot_with_weights(axs[1], f, -z_i, title='', color=color, marker=marker,
-                                  markerfacecolor=markerfacecolor, linewidth=linewidth,
+            _subplot_with_weights(axs[1], f, -z_i, title=title2, color=color, marker=marker,
+                                  markerfacecolor=markerfacecolor, linewidth=linewidth, 
                                   linestyle=linestyle, label=label, weights=weights,
-                                  xlabel='Frequency / Hz',
+                                  xlabel='Frequency / Hz', 
                                   ylabel=r'$-Z_{\mathrm{imag}} \/ / \/ \mathrm{\Omega \bullet cm^2}$')
         axs[1].set_xscale('log')
         if len(label) > 0:
@@ -504,20 +516,32 @@ def plot_eisdrtres(eis_freq, eis_z_real, eis_z_imag, drt_gamma, drt_tau, eis_res
         hdl = Handle()
     if not isinstance(hdl.fig, plt.Figure):
         # https://matplotlib.org/3.1.1/users/dflt_style_changes.html#figure-size-font-size-and-screen-dpi
-        rcParams['figure.figsize'] = [10.0, 6.0]  # set temporary default figure size
-        fig = plt.figure(constrained_layout=True)
-        rcParams['figure.figsize'] = rcParamsDefault['figure.figsize']  # restore to default
-        gs = fig.add_gridspec(2, 2)
-        axs_eis = [fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[1, 0])]  # top-left, bottom-left
-        ax_drt = fig.add_subplot(gs[0, 1])  # top-right
-        ax_res = fig.add_subplot(gs[1, 1])  # bottom-right
+        # rcParams['figure.figsize'] = [10.0, 6.0]  # set temporary default figure size
+        # fig = plt.figure(constrained_layout=True)
+        # rcParams['figure.figsize'] = rcParamsDefault['figure.figsize']  # restore to default
+        # gs = fig.add_gridspec(2, 2)
+        # axs_eis = [fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[1, 0])]  # top-left, bottom-left
+        # ax_drt = fig.add_subplot(gs[0, 1])  # top-right
+        # ax_res = fig.add_subplot(gs[1, 1])  # bottom-right
+
+        fig, axs = plt.subplots(nrows=2, ncols=2, figize=(10, 6), constrained_layout=True)
+        axs_eis = axs[0]
+        ax_drt = axs[1][0]
+        ax_res = axs[1][1]
     elif hdl.axs is None or (not isinstance(hdl.axs[0][0], axes.Axes)):
         fig = hdl.fig
-        fig._constrained = True
-        gs = fig.add_gridspec(2, 2)
-        axs_eis = [fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[1, 0])]  # top-left, bottom-left
-        ax_drt = fig.add_subplot(gs[0, 1])  # top-right
-        ax_res = fig.add_subplot(gs[1, 1])  # bottom-right
+
+        # fig._constrained = True  # not working in windows 11 (or newer version of python/matplotlib?)
+        # gs = fig.add_gridspec(2, 2)
+        # axs_eis = [fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[1, 0])]  # top-left, bottom-left
+        # ax_drt = fig.add_subplot(gs[0, 1])  # top-right
+        # ax_res = fig.add_subplot(gs[1, 1])  # bottom-right
+
+        fig.set_constrained_layout(True)
+        axs = fig.subplots(nrows=2, ncols=2)
+        axs_eis = axs[0]
+        ax_drt = axs[1][0]
+        ax_res = axs[1][1]
     else:
         fig, axs = hdl.fig, hdl.axs
         axs_eis, ax_2 = axs

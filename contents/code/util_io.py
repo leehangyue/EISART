@@ -81,11 +81,10 @@ def load_eis_data(filename, read_comments=False, title_delim='\t'):
     if ext == supported_extension[0]:  # txt
         with open(filename, 'r') as datafile:
             text = datafile.read()
-        while '\t\t' in text:
-            text = text.replace('\t\t', ' ')
-        while '  ' in text:
-            text = text.replace('  ', ' ')
         text = text.replace(' ', '\t')
+        text = text.replace(',', '\t')
+        while '\t\t' in text:
+            text = text.replace('\t\t', '\t')
         # eis_data = np.loadtxt(filename, dtype=np.float, delimiter='\t')
         # eis_data = np.fromstring(text, dtype=np.float, sep='\t').reshape(-1, 3)
         eis_data = []
@@ -185,6 +184,8 @@ def load_eis_data(filename, read_comments=False, title_delim='\t'):
         raise ValueError('Unsupported data format!')
     if eis_data.size == 0:
         raise ValueError('Zero-sized eis_data loaded.')
+    argsort_freq = np.flip(np.argsort(eis_data[:, 0]))
+    eis_data = eis_data[argsort_freq, :]
     if read_comments:
         comments = str(comments)[2:-1]  # str(bytes) -> b'xxxxxx'
         comments = comments.swapcase()
