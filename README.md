@@ -1,5 +1,5 @@
 # EISART
- Welcome to EISART! 
+ Welcome to EISART! (In Chinese, 电化学阻抗谱分析提取软件)
  
  EISART, or Electrochemical Impedance Spectra Analysis and Refining Tool, is a free software in Python for impedance spectrum analysis (incl. DRT, ECM) with Graphical User Interface (GUI).
  
