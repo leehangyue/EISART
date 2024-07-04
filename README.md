@@ -18,6 +18,7 @@
  Please cite the following academic journal article if you use EISART in your work: 
  
  Li, Hangyue, Zewei Lyu, and Minfang Han. "Robust and Fast Estimation of Equivalent Circuit Model from Noisy Electrochemical Impedance Spectra." Electrochimica Acta (2022): 140474. https://doi.org/10.1016/j.electacta.2022.140474
+ 
  The PDF file of this journal article is in the "readme" folder in this branch.
 
 # About
